@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@cyberparc.com",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "email": "company@cyberparc.com",
+      "password": "com123",
+      "role": "company",
+      "companyName": "TechCorp"
+    },
+    {
+      "id": 4,
+      "email": "tiktak@cyberparc.com",
+      "password": "00000000",
+      "role": "company",
+      "companyName": "tiktako"
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "TechCorp",
+      "sector": "Informatique",
+      "location": "Tunis",
+      "email": "company@cyberparc.com",
+      "phone": "71234567"
+    },
+    {
+      "id": 2,
+      "name": "SmartDev",
+      "sector": "Développement web",
+      "location": "Ariana",
+      "email": "contact@smartdev.tn",
+      "phone": "71345678"
+    },
+    {
+      "id": 4,
+      "name": "tiktako",
+      "sector": "it",
+      "location": "djerba",
+      "email": "tiktak@cyberparc.com",
+      "phone": "24518695"
+    }
+  ]
+}
