@@ -1,5 +1,5 @@
 // src/pages/AnnuairePage.tsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AnnuairePage.css";
 
@@ -34,7 +34,9 @@ const AnnuairePage: React.FC = () => {
       .catch(err => console.error(err));
   };
 
-  const handleDelete = async (id: number, name: string) => {
+  const handleDelete = async (e: React.MouseEvent, id: number, name: string) => {
+    e.stopPropagation(); // ما ينشّطش الـlink
+    
     if (!confirm(`Voulez-vous vraiment supprimer "${name}" ?`)) return;
     
     try {
@@ -54,7 +56,9 @@ const AnnuairePage: React.FC = () => {
     }
   };
 
-  const handleEdit = (company: Company) => {
+  const handleEdit = (e: React.MouseEvent, company: Company) => {
+    e.stopPropagation(); // ما ينشّطش الـlink
+    
     setEditingId(company.id);
     setFormData({
       name: company.name,
@@ -110,7 +114,12 @@ const AnnuairePage: React.FC = () => {
         <div className="annuaire-grid">
           {companies.map((c) => (
             <div key={c.id} className="annuaire-card-wrapper">
-              <div className="annuaire-card">
+              {/* Carte clickable → détails */}
+              <Link 
+                to={`/entreprise/${c.id}`}
+                className="annuaire-card annuaire-card-clickable"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <div className="annuaire-card-header">
                   <div className="annuaire-logo">
                     {c.name.charAt(0).toUpperCase()}
@@ -127,21 +136,22 @@ const AnnuairePage: React.FC = () => {
                   <span className="annuaire-tag">Active</span>
                   <span className="annuaire-tag">Cyber Parc</span>
                 </div>
+              </Link>
 
-                <div className="annuaire-actions">
-                  <button 
-                    className="annuaire-btn annuaire-btn-edit"
-                    onClick={() => handleEdit(c)}
-                  >
-                    ✏️ Modifier
-                  </button>
-                  <button 
-                    className="annuaire-btn annuaire-btn-delete"
-                    onClick={() => handleDelete(c.id, c.name)}
-                  >
-                    🗑️ Supprimer
-                  </button>
-                </div>
+              {/* Actions en dehors du Link */}
+              <div className="annuaire-actions">
+                <button 
+                  className="annuaire-btn annuaire-btn-edit"
+                  onClick={(e) => handleEdit(e, c)}
+                >
+                  ✏️ Modifier
+                </button>
+                <button 
+                  className="annuaire-btn annuaire-btn-delete"
+                  onClick={(e) => handleDelete(e, c.id, c.name)}
+                >
+                  🗑️ Supprimer
+                </button>
               </div>
 
               {/* Formulaire sous la carte */}

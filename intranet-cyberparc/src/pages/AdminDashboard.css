@@ -1,236 +1,254 @@
-/* src/pages/AdminDashboard.css */
+/* =========================
+   ROOT
+========================= */
 .admin-root {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #e5edff 0, #f3f4f6 45%, #eef2ff 100%);
-  color: #0f172a;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  background-color: #f3f4f6;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: #1f2937;
 }
 
-/* header */
+/* =========================
+   HEADER (FIXE)
+========================= */
 .admin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #fff;
+  padding: 20px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 28px;
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid #e5e7eb;
-  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
 .admin-title {
   margin: 0;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
 }
 
 .admin-subtitle {
-  margin: 4px 0 0;
-  font-size: 13px;
-  color: #6b7280;
+  margin-top: 4px;
+  font-size: 14px;
+  opacity: 0.9;
 }
 
 .admin-header-right {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.admin-user {
-  font-size: 13px;
-  color: #6b7280;
-}
-
-.admin-logout {
-  border: none;
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: 12px;
-  cursor: pointer;
-  background: #ef4444;
-  color: #ffffff;
-}
-
-/* main كـ grid: كروت فوق، محتوى تحت */
-.admin-main {
-  padding: 16px 24px 24px;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  row-gap: 16px;
-}
-
-/* cards */
-.admin-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 14px;
 }
 
-.admin-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 14px 16px 16px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-  position: relative;
-  overflow: hidden;
-}
-
-/* شريط ملون فوق كل كارت */
-.admin-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  height: 3px;
-  border-radius: 18px 18px 0 0;
-}
-
-.admin-card:nth-child(1)::before {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-}
-
-.admin-card:nth-child(2)::before {
-  background: linear-gradient(135deg, #f97316, #ea580c);
-}
-
-.admin-card:nth-child(3)::before {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-}
-
-.admin-card-title {
-  margin: 6px 0 6px;
-  font-size: 15px;
+.admin-user {
+  font-size: 14px;
   font-weight: 600;
 }
 
-.admin-card-text {
-  margin: 0 0 10px;
-  font-size: 13px;
-  color: #6b7280;
-}
-
-.admin-link-button {
+.admin-logout {
+  background: #ef4444;
   border: none;
-  background: transparent;
-  color: #2563eb;
-  font-size: 13px;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 0;
-  text-decoration: none;
+  font-weight: 600;
 }
 
-/* الصف اللي تحت الكروت */
-.admin-content-row {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+.admin-logout:hover {
+  background: #dc2626;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+.admin-main {
+  display: flex;
+  padding: 20px;
+  margin-top: 90px; /* espace header */
+}
+
+/* =========================
+   SIDEBAR (FIXE)
+========================= */
+.admin-sidebar {
+  position: fixed;
+  top: 90px;
+  left: 20px;
+  width: 260px;
+  height: calc(100vh - 110px);
+  overflow-y: auto;
+}
+
+.admin-cards {
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
-/* panel الرئيسي */
-.admin-panel {
-  background: radial-gradient(circle at top left, #eff6ff 0, #ffffff 40%);
-  border-radius: 18px;
-  padding: 18px 20px 20px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-}
-
-.admin-panel-title {
-  margin: 0 0 6px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.admin-panel-text {
-  margin: 0 0 12px;
-  font-size: 13px;
-  color: #6b7280;
-}
-
-/* panel جانبي */
-.admin-side-panel {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 14px 16px 16px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-  font-size: 13px;
-  color: #6b7280;
-}
-
-.admin-side-title {
-  margin: 0 0 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #111827;
-}
-
-/* form */
-.admin-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.admin-label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 13px;
-}
-
-.admin-input,
-.admin-textarea {
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  background: #f9fafb;
-  padding: 8px 9px;
-  font-size: 13px;
-  outline: none;
-}
-
-.admin-input:focus,
-.admin-textarea:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 1px #3b82f655;
-  background: #ffffff;
-}
-
-.admin-primary-button {
-  align-self: flex-start;
-  border: none;
-  border-radius: 999px;
-  padding: 8px 14px;
-  font-size: 13px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: #ffffff;
-  font-weight: 600;
-  margin-top: 4px;
-}
-
-/* responsive */
-@media (max-width: 900px) {
-  .admin-main {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .admin-content-row {
-    grid-template-columns: 1fr;
-  }
-}
-/* كارت تولي clickable */
 .admin-card {
-  cursor: pointer;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e5e7eb;
+  transition: all 0.25s ease;
 }
 
 .admin-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-color: #3b82f6;
+}
+
+.admin-card-title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.admin-card-text {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* =========================
+   FEED (CONTENT)
+========================= */
+.admin-feed {
+  margin-left: 300px; /* espace sidebar */
+  flex: 1;
+}
+
+.admin-feed-title {
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.admin-feed-empty {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px dashed #d1d5db;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* =========================
+   POST
+========================= */
+.admin-post {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+/* POST HEADER */
+.admin-post-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-right: 12px;
+}
+
+.admin-post-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.admin-post-meta strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+/* POST CONTENT */
+.admin-post-content {
+  padding: 16px;
+}
+
+.admin-post-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.admin-post-description {
+  margin: 0;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* IMAGE */
+.admin-post-image img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+/* FOOTER */
+.admin-post-footer {
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.admin-post-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.admin-post-action:hover {
+  color: #2563eb;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .admin-main {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .admin-feed {
+    margin-left: 0;
+  }
 }

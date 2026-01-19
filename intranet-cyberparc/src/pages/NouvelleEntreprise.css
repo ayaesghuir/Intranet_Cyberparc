@@ -1,0 +1,151 @@
+/* src/pages/NouvelleEntreprise.css */
+
+.nouvelle-entreprise-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e5f0ff 0%, #f5f7ff 40%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  box-sizing: border-box;
+}
+
+.nouvelle-entreprise-card {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14);
+  padding: 28px 28px 24px;
+  box-sizing: border-box;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+/* header interne de la card */
+.ne-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.nouvelle-entreprise-title {
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.01em;
+}
+
+.nouvelle-entreprise-subtitle {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* Form */
+
+.nouvelle-entreprise-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ne-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ne-form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.ne-input {
+  border-radius: 12px;
+  border: 1px solid #d0d7e3;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  outline: none;
+  background: #f9fbff;
+  color: #0f172a;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.ne-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
+  background: #ffffff;
+}
+
+/* Actions */
+
+.ne-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ne-cancel-button,
+.ne-submit-button {
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.ne-cancel-button {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.ne-cancel-button:hover {
+  background: #d1d5db;
+  transform: translateY(-1px);
+}
+
+.ne-submit-button {
+  background: #2563eb;
+  color: #f9fafb;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+}
+
+.ne-submit-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.ne-cancel-button:disabled,
+.ne-submit-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nouvelle-entreprise-card {
+    padding: 20px 18px 18px;
+    border-radius: 18px;
+  }
+
+  .nouvelle-entreprise-title {
+    font-size: 1.35rem;
+  }
+
+  .ne-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

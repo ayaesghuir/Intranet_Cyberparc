@@ -21,7 +21,6 @@
   font-size: 18px;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.7);
 }
-
 .brand-text {
   display: flex;
   flex-direction: column;
@@ -120,4 +119,18 @@
 .brand-tagline {
   font-size: 12px;
   color: #e5e7eb;
+}
+.forgot-password-link {
+  border: none;
+  background: transparent;
+  color: #3b82f6;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
 }
