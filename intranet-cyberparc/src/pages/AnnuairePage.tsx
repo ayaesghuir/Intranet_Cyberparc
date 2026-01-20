@@ -2,7 +2,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AnnuairePage.css";
-
+import toast from "react-hot-toast";
+import useConfirmDelete from "../hooks/UserConfirmDelete";
+import { useModifier } from "../hooks/UserModifier";
 type Company = {
   id: number;
   name: string;
@@ -23,6 +25,9 @@ const AnnuairePage: React.FC = () => {
     phone: ""
   });
 
+  const confirmDelete = useConfirmDelete();
+  const modifier = useModifier();
+
   useEffect(() => {
     loadCompanies();
   }, []);
@@ -34,27 +39,35 @@ const AnnuairePage: React.FC = () => {
       .catch(err => console.error(err));
   };
 
-  const handleDelete = async (e: React.MouseEvent, id: number, name: string) => {
-    e.stopPropagation(); // ما ينشّطش الـlink
-    
-    if (!confirm(`Voulez-vous vraiment supprimer "${name}" ?`)) return;
-    
-    try {
-      const response = await fetch(`http://localhost:3001/api/companies/${id}`, {
-        method: 'DELETE'
-      });
-      
-      if (response.ok) {
-        alert(`✅ "${name}" supprimée`);
-        loadCompanies();
-      } else {
-        alert('❌ Erreur lors de la suppression');
-      }
-    } catch (error) {
-      alert('❌ Erreur serveur');
-      console.error(error);
+const handleDelete = async (
+  e: React.MouseEvent,
+  id: number,
+  name: string
+) => {
+  e.stopPropagation();
+
+  const confirmed = await confirmDelete(`🗑️ Supprimer "${name}" ?`);
+
+  if (!confirmed) return;
+
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/companies/${id}`,
+      { method: "DELETE" }
+    );
+
+    if (response.ok) {
+      toast.success(`✅ "${name}" supprimée`);
+      loadCompanies();
+    } else {
+      toast.error("❌ Erreur lors de la suppression");
     }
-  };
+  } catch (error) {
+    toast.error("❌ Erreur serveur");
+    console.error(error);
+  }
+};
+ 
 
   const handleEdit = (e: React.MouseEvent, company: Company) => {
     e.stopPropagation(); // ما ينشّطش الـlink
@@ -80,14 +93,14 @@ const AnnuairePage: React.FC = () => {
       });
       
       if (response.ok) {
-        alert('✅ Entreprise modifiée');
+        toast.success('✅ Entreprise modifiée');
         setEditingId(null);
         loadCompanies();
       } else {
-        alert('❌ Erreur lors de la modification');
+        toast.error('❌ Erreur lors de la modification');
       }
     } catch (error) {
-      alert('❌ Erreur serveur');
+      toast.error('❌ Erreur serveur');
       console.error(error);
     }
   };

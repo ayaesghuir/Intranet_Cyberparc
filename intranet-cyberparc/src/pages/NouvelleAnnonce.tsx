@@ -4,7 +4,7 @@ import type { FC, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import type { User } from "./LoginPage";
 import "./NouvelleAnnonce.css";
-
+import toast from "react-hot-toast";
 type NouvelleAnnonceProps = {
   user: User;
 };
@@ -25,7 +25,7 @@ const NouvelleAnnonce: FC<NouvelleAnnonceProps> = ({ user }) => {
     if (!file) return;
 
     if (file.size > 2 * 1024 * 1024) {
-      alert("❌ Image trop grande (max 2MB)");
+      toast.error("❌ Image trop grande (max 2MB)");
       e.target.value = "";
       return;
     }
@@ -46,7 +46,7 @@ const NouvelleAnnonce: FC<NouvelleAnnonceProps> = ({ user }) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!formData.titre.trim() || !formData.description.trim()) {
-      alert("❌ Titre et description sont obligatoires");
+      toast.error("❌ Titre et description sont obligatoires");
       return;
     }
 
@@ -66,17 +66,17 @@ const NouvelleAnnonce: FC<NouvelleAnnonceProps> = ({ user }) => {
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
         console.error("Erreur backend:", err);
-        alert("❌ Erreur lors de la publication");
+        toast.error("❌ Erreur lors de la publication");
         return;
       }
 
       const data = await res.json();
       console.log("✅ Annonce créée:", data);
-      alert("✅ Annonce publiée avec succès");
+      toast.success("✅ Annonce publiée avec succès");
       navigate("/"); // أو /admin-dashboard حسب routing متاعك
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("❌ Erreur lors de la publication");
+      toast.error("❌ Erreur lors de la publication");
     } finally {
       setLoading(false);
     }

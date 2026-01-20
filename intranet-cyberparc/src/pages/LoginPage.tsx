@@ -1,5 +1,5 @@
 // src/pages/LoginPage.tsx
-import React, { useState } from "react";
+import { FC, useState } from "react";
 import "./LoginPage.css";
 
 export type User = {
@@ -12,12 +12,12 @@ type LoginPageProps = {
   onLogin: (user: User) => void;
 };
 
-const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
+const LoginPage: FC<LoginPageProps> = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
 

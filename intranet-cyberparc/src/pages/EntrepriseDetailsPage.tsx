@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./AdminDashboard.css";
-
+import toast from "react-hot-toast";
 type Company = {
   id: number;
   name: string;
@@ -58,15 +58,15 @@ const EntrepriseDetailsPage: React.FC = () => {
       });
       
       if (response.ok) {
-        alert('✅ Mot de passe modifié avec succès');
+        toast.success('✅ Mot de passe modifié avec succès');
         setEditingPassword(false);
         setNewPassword("");
         loadData();
       } else {
-        alert('❌ Erreur lors de la modification');
+        toast.error('❌ Erreur lors de la modification');
       }
     } catch (error) {
-      alert('❌ Erreur serveur');
+      toast.error('❌ Erreur serveur');
       console.error(error);
     }
   };

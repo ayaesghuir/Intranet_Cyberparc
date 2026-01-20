@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./NouvelleEntreprise.css";
-
+import toast from "react-hot-toast";
 const NouvelleEntreprisePage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const NouvelleEntreprisePage: React.FC = () => {
       !formData.email.trim() ||
       !formData.password.trim()
     ) {
-      alert("❌ Tous les champs obligatoires doivent être remplis");
+      toast.error("❌ Tous les champs obligatoires doivent être remplis");
       return;
     }
 
@@ -57,8 +57,7 @@ const NouvelleEntreprisePage: React.FC = () => {
       }
 
       const result = await response.json();
-      alert(
-        "✅ Entreprise ajoutée: " + (result.company?.name || formData.name)
+      toast.success("✅ Entreprise ajoutée: " + (result.company?.name || formData.name)
       );
 
       setFormData({
@@ -71,7 +70,7 @@ const NouvelleEntreprisePage: React.FC = () => {
       });
     } catch (error) {
       console.error(error);
-      alert("❌ Erreur: Vérifiez que le backend est lancé");
+      toast.error("❌ Erreur: Vérifiez que le backend est lancé");
     } finally {
       setLoading(false);
     }

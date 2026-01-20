@@ -3,7 +3,8 @@ import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
 import type { User } from "./LoginPage";
-
+import toast from "react-hot-toast";
+import useConfirmDelete from "../hooks/UserConfirmDelete";
 type AdminDashboardProps = {
   user: User;
   onLogout: () => void;
@@ -31,10 +32,13 @@ const AdminDashboard: FC<AdminDashboardProps> = ({ user, onLogout }) => {
   const [annonces, setAnnonces] = useState<Annonce[]>([]);
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
   const [commentText, setCommentText] = useState<Record<number, string>>({});
-   
+  const confirmDelete = useConfirmDelete();
+
   useEffect(() => {
     loadAnnonces();
   }, []);
+  // Test toast button
+
 
   const loadAnnonces = () => {
     fetch('http://localhost:3001/api/annonces')
@@ -59,25 +63,34 @@ const AdminDashboard: FC<AdminDashboardProps> = ({ user, onLogout }) => {
     }
   };
 
-  const handleDeleteAnnonce = async (annonceId: number, titre: string) => {
-    if (!confirm(`Voulez-vous vraiment supprimer "${titre}" ?`)) return;
-    
-    try {
-      const response = await fetch(`http://localhost:3001/api/annonces/${annonceId}`, {
-        method: 'DELETE'
-      });
-      
-      if (response.ok) {
-        alert('✅ Annonce supprimée');
-        loadAnnonces();
-      } else {
-        alert('❌ Erreur lors de la suppression');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('❌ Erreur serveur');
+
+const handleDeleteAnnonce = async (annonceId: number, titre: string) => {
+  const confirmed = await confirmDelete(
+    `🗑️ Supprimer l'annonce "${titre}" ?`
+  );
+
+  if (!confirmed) return;
+
+  const toastId = toast.loading("⏳ Suppression en cours...");
+
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/annonces/${annonceId}`,
+      { method: "DELETE" }
+    );
+
+    if (response.ok) {
+      toast.success("✅ Annonce supprimée", { id: toastId });
+      loadAnnonces();
+    } else {
+      toast.error("❌ Erreur lors de la suppression", { id: toastId });
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("❌ Erreur serveur", { id: toastId });
+  }
+};
+
 
   const handleComment = async (annonceId: number) => {
     const text = commentText[annonceId]?.trim();

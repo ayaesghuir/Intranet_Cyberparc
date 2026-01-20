@@ -1,5 +1,5 @@
 // src/pages/CompanyDashboard.tsx
-import React from "react";
+import { FC } from "react";
 import "./CompanyDashboard.css";
 import type { User } from "./LoginPage";
 
@@ -8,7 +8,7 @@ type CompanyDashboardProps = {
   onLogout: () => void;
 };
 
-const CompanyDashboard: React.FC<CompanyDashboardProps> = ({
+const CompanyDashboard: FC<CompanyDashboardProps> = ({
   user,
   onLogout,
 }) => {

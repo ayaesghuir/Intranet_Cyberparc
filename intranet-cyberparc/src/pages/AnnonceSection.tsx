@@ -1,5 +1,6 @@
 // src/components/AnnonceSection.tsx
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 type Annonce = {
   id: number;
@@ -55,7 +56,7 @@ const AnnonceSection: React.FC<AnnonceSectionProps> = ({ userEmail }) => {
     if (!file) return;
 
     if (file.size > 2 * 1024 * 1024) {
-      alert('❌ La taille de l\'image ne doit pas dépasser 2 MB');
+      toast.error('❌ La taille de l\'image ne doit pas dépasser 2 MB');
       return;
     }
 
@@ -80,14 +81,14 @@ const AnnonceSection: React.FC<AnnonceSectionProps> = ({ userEmail }) => {
       });
       
       if (response.ok) {
-        alert('✅ Annonce publiée');
+        toast.success('✅ Annonce publiée');
         setFormData({ titre: "", description: "", image: "" });
         loadAnnonces();
       } else {
-        alert('❌ Erreur');
+        toast.error('❌ Erreur');
       }
     } catch (error) {
-      alert('❌ Erreur serveur');
+      toast.error('❌ Erreur serveur');
       console.error(error);
     }
   };
