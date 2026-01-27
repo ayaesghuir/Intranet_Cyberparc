@@ -337,6 +337,55 @@ app.post("/api/messages", (req, res) => {
   res.status(201).json(newMessage);
 });
 
+
+// GET profil entreprise par email
+app.get("/api/company-profile/:email", (req, res) => {
+  const data = readData();
+  const email = req.params.email;
+
+  const company = data.companies.find((c) => c.email === email);
+  if (!company) {
+    return res.status(404).json({ error: "Entreprise introuvable" });
+  }
+
+  res.json(company);
+});
+
+// PUT mise à jour profil (sans mot de passe)
+app.put("/api/company-profile/:email", (req, res) => {
+  const data = readData();
+  const email = req.params.email;
+
+  const index = data.companies.findIndex((c) => c.email === email);
+  if (index === -1) {
+    return res.status(404).json({ error: "Entreprise introuvable" });
+  }
+
+  data.companies[index] = {
+    ...data.companies[index],
+    name: req.body.name,
+    sector: req.body.sector,
+    location: req.body.location,
+    phone: req.body.phone,
+    website: req.body.website,
+    description: req.body.description,
+  };
+
+  writeData(data);
+  res.json({ success: true, company: data.companies[index] });
+});
+// GET /api/companies - Liste toutes les entreprises
+app.get('/api/liste-entreprise', async (req, res) => {
+  try {
+    const companies = await pool.query(
+      'SELECT name, sector, location, phone, website, description, email FROM company_profiles WHERE name IS NOT NULL'
+    );
+    res.json(companies.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
 // آخر سطر في الملف
 app.listen(3001, () => {
   console.log('✅ Backend running on http://localhost:3001');

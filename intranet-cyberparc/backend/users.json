@@ -11,7 +11,7 @@
       "email": "innodev@cyberparc.com",
       "password": "123456",
       "role": "company",
-      "companyName": "inno dev"
+      "companyName": "inno dev,"
     },
     {
       "id": 5,
@@ -45,11 +45,11 @@
   "companies": [
     {
       "id": 3,
-      "name": "inno dev",
+      "name": "inno dev,",
       "sector": "it",
       "location": "djerba",
       "email": "innodev@cyberparc.com",
-      "phone": "20256478"
+      "phone": "24856478"
     },
     {
       "id": 4,
@@ -70,10 +70,12 @@
     {
       "id": 6,
       "name": "aya dev",
-      "sector": "devlopment",
+      "sector": "devlopmenttt",
       "location": "djerba",
       "email": "aya@cyberparc.com",
-      "phone": "50044024"
+      "phone": "50044024",
+      "website": "",
+      "description": ""
     },
     {
       "id": 7,
@@ -86,13 +88,75 @@
   ],
   "annonces": [
     {
+      "id": 5,
+      "titre": "gfj",
+      "description": "fh",
+      "image": null,
+      "date": "2026-01-26T14:03:26.234Z",
+      "auteur": "aya@cyberparc.com",
+      "likes": [
+        "aya@cyberparc.com"
+      ],
+      "comments": [
+        {
+          "id": 1769436218395,
+          "text": "lklk",
+          "auteur": "aya@cyberparc.com",
+          "date": "2026-01-26T14:03:38.395Z",
+          "parentId": null,
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titre": "bien ",
+      "description": "partager des information\n",
+      "image": null,
+      "date": "2026-01-22T10:24:58.471Z",
+      "auteur": "admin@cyberparc.com",
+      "likes": []
+    },
+    {
+      "id": 3,
+      "titre": "5555555555555555",
+      "description": "1111111111111111\n",
+      "image": null,
+      "date": "2026-01-21T21:24:56.150Z",
+      "auteur": "innodev@cyberparc.com",
+      "localisation": "",
+      "likes": [
+        "innodev@cyberparc.com"
+      ],
+      "comments": []
+    },
+    {
       "id": 2,
       "titre": "bonjour",
       "description": "jjjjjjjjjjjjjjjj",
       "image": null,
       "date": "2026-01-20T10:18:29.015Z",
       "auteur": "admin@cyberparc.com",
-      "likes": []
+      "likes": [
+        "aya@cyberparc.com",
+        "admin@cyberparc.com"
+      ],
+      "comments": [
+        {
+          "id": 1769017319697,
+          "text": "hu",
+          "auteur": "aya@cyberparc.com",
+          "date": "2026-01-21T17:41:59.705Z",
+          "parentId": null,
+          "replies": []
+        },
+        {
+          "id": 1769030523278,
+          "text": "ll",
+          "auteur": "innodev@cyberparc.com",
+          "date": "2026-01-21T21:22:03.278Z"
+        }
+      ]
     },
     {
       "id": 1,
@@ -101,7 +165,9 @@
       "image": null,
       "date": "2026-01-20T09:05:40.252Z",
       "auteur": "admin@cyberparc.com",
-      "likes": []
+      "likes": [
+        "aya@cyberparc.com"
+      ]
     }
   ],
   "Messages": [
@@ -131,6 +197,20 @@
       "receiver": "admin@cyberparc.tn",
       "text": "bonsoir",
       "date": "2026-01-19T20:34:12.657Z"
+    },
+    {
+      "id": 1769017280429,
+      "sender": "aya@cyberparc.com",
+      "receiver": "admin@cyberparc.tn",
+      "text": "bonsoir",
+      "date": "2026-01-21T17:41:20.429Z"
+    },
+    {
+      "id": 1769017292248,
+      "sender": "admin@cyberparc.com",
+      "receiver": "admin@cyberparc.tn",
+      "text": "hhhhhhhhhhhhhhhhhh",
+      "date": "2026-01-21T17:41:32.248Z"
     }
   ]
 }

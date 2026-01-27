@@ -1,0 +1,133 @@
+/* src/pages/ProfilEntreprisePage.css */
+.profil-root {
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 24px 40px 32px;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.profil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.profil-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.profil-email {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.profil-main {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.profil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profil-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+}
+
+.profil-label {
+  font-size: 13px;
+  color: #111827;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profil-input,
+.profil-textarea {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #f9fafb;
+  outline: none;
+}
+
+.profil-input:focus,
+.profil-textarea:focus {
+  border-color: #22c55e;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+}
+
+.profil-textarea {
+  resize: vertical;
+}
+
+.profil-save {
+  align-self: flex-start;
+  background: #22c55e;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.profil-save:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+@media (max-width: 768px) {
+  .profil-root {
+    padding: 16px;
+  }
+
+  .profil-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.profil-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+}
+
+.profil-back-btn:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.profil-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.profil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}

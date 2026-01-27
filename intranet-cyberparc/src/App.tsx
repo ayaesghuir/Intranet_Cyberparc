@@ -4,63 +4,98 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage, { type User } from "./pages/LoginPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import CompanyDashboard from "./pages/CompanyDashboard";
-import AnnuairePage from "./pages/AnnuairePage";
+import AnnuairePage from "./pages/AnnuairePage";          
+import AdminAnnuairePage from "./pages/AnnuairePage"; 
 import NouvelleEntreprisePage from "./pages/NouvelleEntreprisePage";
 import NouvelleAnnonce from "./pages/NouvelleAnnonce";
 import EntrepriseDetailsPage from "./pages/EntrepriseDetailsPage";
-import "./index.css";
 import AnnoncesPage from "./pages/AnnonceSection";
 import Forum from "./pages/Forum";
-import toast, { Toaster } from "react-hot-toast";
-
+import ProfilEntreprisePage from "./pages/ProfilEntreprisePage";
+import { Toaster } from "react-hot-toast";
+import "./index.css";
+import ListeEntreprise from "./pages/ListeEntreprise";
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
 
-  if (!user) {
-    return (
-      <>
-        {/* Toaster toujours présent */}
-        <Toaster position="top-right" />
-        <LoginPage onLogin={setUser} />
-      </>
-    );
-  }
+  const handleLogout = () => {
+    setUser(null);
+  };
 
   return (
     <>
-      <Toaster position="top-center" />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+          duration: 3000,
+          style: { fontSize: "14px" },
+        }}
+      />
 
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              user.role === "admin" ? (
-                <AdminDashboard user={user} onLogout={() => setUser(null)} />
-              ) : (
-                <CompanyDashboard user={user} onLogout={() => setUser(null)} />
-              )
-            }
-          />
-          <Route path="/forum" element={<Forum user={user} />} />
-          <Route
-            path="/annonces"
-            element={<AnnoncesPage userEmail={user.email} />}
-          />
-          <Route path="/annuaire" element={<AnnuairePage />} />
-          <Route
-            path="/nouvelle-entreprise"
-            element={<NouvelleEntreprisePage />}
-          />
-          <Route
-            path="/nouvelle-annonce"
-            element={<NouvelleAnnonce user={user} />}
-          />
-          <Route
-            path="/entreprise/:id"
-            element={<EntrepriseDetailsPage />}
-          />
-        </Routes>
+        {!user ? (
+          <LoginPage onLogin={setUser} />
+        ) : (
+          <Routes>
+            {/* Dashboard */}
+            <Route
+              path="/"
+              element={
+                user.role === "admin" ? (
+                  <AdminDashboard user={user} onLogout={handleLogout} />
+                ) : (
+                  <CompanyDashboard user={user} onLogout={handleLogout} />
+                )
+              }
+            />
+
+            {/* Forum */}
+            <Route path="/forum" element={<Forum user={user} />} />
+
+            {/* Annonces */}
+            <Route
+              path="/annonces"
+              element={<AnnoncesPage userEmail={user.email} />}
+            />
+
+            {/* Mon profil entreprise */}
+            <Route
+              path="/mon-profil"
+              element={<ProfilEntreprisePage user={user} />}
+            />
+
+            {/* Annuaire ENTREPRISE (read-only) */}
+            <Route
+              path="/annuaire"
+              element={<AnnuairePage  />}
+            />
+
+            {/* Annuaire ADMIN (gestion) */}
+            <Route
+              path="/admin/annuaire"
+              element={<AdminAnnuairePage  />}
+            />
+
+            {/* Nouvelle entreprise (admin) */}
+            <Route
+              path="/nouvelle-entreprise"
+              element={<NouvelleEntreprisePage />}
+            />
+
+            {/* Nouvelle annonce */}
+            <Route
+              path="/nouvelle-annonce"
+              element={<NouvelleAnnonce user={user} />}
+            />
+
+            {/* Détails entreprise */}
+            <Route
+              path="/liste-entreprises"
+              element={<ListeEntreprise user={user} />}
+            />  
+          </Routes>
+        )}
       </BrowserRouter>
     </>
   );
