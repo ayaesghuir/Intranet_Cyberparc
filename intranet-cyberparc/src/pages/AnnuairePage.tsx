@@ -86,7 +86,7 @@ const handleDelete = async (
     e.preventDefault();
     
     try {
-      const response = await fetch(`http://localhost:3001/api/companies/${id}`, {
+      const response = await fetch(`http://localhost:3001/api/companies`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

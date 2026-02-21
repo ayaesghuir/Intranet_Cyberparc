@@ -1,5 +1,6 @@
-/*import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import type {  User } from "./LoginPage";
 
 type Company = {
   id: number;
@@ -11,46 +12,42 @@ type Company = {
   website?: string;
   description?: string;
 };
+type MonProfile = {
+  user: User;
+};
 
-export default function ProfileEntreprisePage() {
-  const { email } = useParams<{ email: string }>();
+const MonProfile: FC<MonProfile> = ({ user }) => {
+  const email = user.email;
   const [company, setCompany] = useState<Company | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchCompany = async () => {
-      try {
-        // ✅ On appelle directement le port 3001
-        const res = await fetch("http://localhost:3001/api/companies");
-        
-        if (!res.ok) throw new Error(`Erreur serveur: ${res.status}`);
-        
-        const data: Company[] = await res.json();
-        
-        // ✅ Décodage de l'email (pour gérer le @ et les points)
-        const emailCherche = decodeURIComponent(email || "");
-        const found = data.find(c => c.email.toLowerCase() === emailCherche.toLowerCase());
+useEffect(() => {
+  const fetchCompany = async () => {
+    try {
+console.log("Searching for:", email);
 
-        if (found) {
-          setCompany(found);
-        } else {
-          setError("Aucune entreprise trouvée avec cet email.");
-        }
-      } catch (err: any) {
-        setError("Erreur de connexion au serveur : " + err.message);
-      } finally {
-        // ✅ Quoi qu'il arrive, on arrête d'afficher "Chargement"
-        setLoading(false);
-      }
-    };
+const res = await fetch(`http://localhost:3001/api/company-profile/${email}`);
 
-    if (email) fetchCompany();
-    else {
-      setError("Email manquant dans l'URL");
+if (!res.ok) {
+  throw new Error("Route introuvable");
+}      const data: Company = await res.json();
+      setCompany(data);
+    } catch (err: any) {
+      setError("Erreur de connexion au serveur : " + err.message);
+    } finally {
       setLoading(false);
     }
-  }, [email]);
+  };
+
+  if (user?.email) fetchCompany();
+  else {
+    setError("Utilisateur non connecté");
+    setLoading(false);
+  }
+}, [user]);
+
+
 
   // 1. Affichage pendant le chargement
   if (loading) {
@@ -63,7 +60,7 @@ export default function ProfileEntreprisePage() {
       <div style={{ padding: "50px", textAlign: "center", color: "red" }}>
         <h2>Oupsi !</h2>
         <p>{error || "Entreprise introuvable"}</p>
-        <Link to="/companiesdashboard">Retour à l'annuaire</Link>
+        <Link to="/">Retour </Link>
       </div>
     );
   }
@@ -71,9 +68,9 @@ export default function ProfileEntreprisePage() {
   // 3. Affichage du profil (Succès)
   return (
     <div style={{ maxWidth: "800px", margin: "40px auto", padding: "20px", fontFamily: "Arial" }}>
-      <Link to="/annuaire" style={{ color: "#666", textDecoration: "none" }}>← Retour à la liste</Link>
+      <Link to="/" style={{ color: "#666", textDecoration: "none" }}>← Retour à la liste</Link>
       
-      <div style={{ marginTop: "20px", border: "1px solid #ddd", borderRadius: "12px", padding: "30px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
+      <div style={{ marginTop: "20px", border: "1px solid #ddd", background: "#fff", borderRadius: "12px", padding: "30px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}>
         <h1 style={{ color: "#2c3e50", margin: "0 0 20px 0" }}>{company.name}</h1>
         
         <div style={{ display: "grid", gap: "15px" }}>
@@ -101,4 +98,4 @@ export default function ProfileEntreprisePage() {
     </div>
   );
 }
-*/
+export default MonProfile;

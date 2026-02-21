@@ -88,6 +88,53 @@
   ],
   "annonces": [
     {
+      "id": 7,
+      "titre": "cherche des stagiere",
+      "description": "stage",
+      "image": null,
+      "date": "2026-01-31T13:34:39.825Z",
+      "auteur": "aya@cyberparc.com",
+      "likes": [],
+      "comments": []
+    },
+    {
+      "id": 6,
+      "titre": "fffff",
+      "description": "ffff",
+      "image": null,
+      "date": "2026-01-27T08:59:00.090Z",
+      "auteur": "aya@cyberparc.com",
+      "likes": [
+        "aya@cyberparc.com"
+      ],
+      "comments": [
+        {
+          "id": 1769504348633,
+          "text": "sss",
+          "auteur": "aya@cyberparc.com",
+          "date": "2026-01-27T08:59:08.633Z",
+          "parentId": null,
+          "replies": []
+        },
+        {
+          "id": 1769505041013,
+          "text": "tt",
+          "auteur": "aya@cyberparc.com",
+          "date": "2026-01-27T09:10:41.013Z",
+          "parentId": null,
+          "replies": []
+        },
+        {
+          "id": 1769505046045,
+          "text": "kk",
+          "auteur": "aya@cyberparc.com",
+          "date": "2026-01-27T09:10:46.045Z",
+          "parentId": null,
+          "replies": []
+        }
+      ]
+    },
+    {
       "id": 5,
       "titre": "gfj",
       "description": "fh",

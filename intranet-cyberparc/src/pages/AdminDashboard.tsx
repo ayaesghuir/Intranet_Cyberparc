@@ -157,13 +157,6 @@ const handleDeleteAnnonce = async (annonceId: number, titre: string) => {
                 </p>
               </Link>
 
-              <Link to="/Forum" className="admin-card">
-                <h2 className="admin-card-title">Forum interne</h2>
-                <p className="admin-card-text">
-                  Publier des annonces et communiquer avec les entreprises.
-                </p>
-              </Link>
-
               <Link to="/nouvelle-entreprise" className="admin-card">
                 <h2 className="admin-card-title">Ajouter une entreprise</h2>
                 <p className="admin-card-text">

@@ -101,12 +101,7 @@ const CompanyDashboard: FC<CompanyDashboardProps> = ({ user, onLogout }) => {
         <aside className="company-sidebar">
           <section className="company-cards">
            
-            <Link to="/forum" className="company-card">
-              <h2 className="company-card-title">Forum entreprise</h2>
-              <p className="company-card-text">
-                Echanger avec l&apos;administration et les autres entreprises.
-              </p>
-            </Link>
+            
 
             <Link to="/mon-profil" className="company-card">
               <h2 className="company-card-title">Mon profil</h2>

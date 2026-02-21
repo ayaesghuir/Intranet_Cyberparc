@@ -10,11 +10,14 @@ import NouvelleEntreprisePage from "./pages/NouvelleEntreprisePage";
 import NouvelleAnnonce from "./pages/NouvelleAnnonce";
 import EntrepriseDetailsPage from "./pages/EntrepriseDetailsPage";
 import AnnoncesPage from "./pages/AnnonceSection";
-import Forum from "./pages/Forum";
-import ProfilEntreprisePage from "./pages/ProfilEntreprisePage";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 import ListeEntreprise from "./pages/ListeEntreprise";
+import MonProfil from "./pages/MonProfile";
+import ProfileEntreprisePage from "./pages/MonProfile";
+import MonProfile from "./pages/MonProfile";
+//import ProfileEntreprisePage from "./pages/ProfilEntreprisePage";
+
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
 
@@ -49,9 +52,7 @@ const App: React.FC = () => {
                 )
               }
             />
-
-            {/* Forum */}
-            <Route path="/forum" element={<Forum user={user} />} />
+<Route path="/entreprise/:email" element={<MonProfile user={user} />} />
 
             {/* Annonces */}
             <Route
@@ -60,10 +61,7 @@ const App: React.FC = () => {
             />
 
             {/* Mon profil entreprise */}
-            <Route
-              path="/mon-profil"
-              element={<ProfilEntreprisePage user={user} />}
-            />
+            
 
             {/* Annuaire ENTREPRISE (read-only) */}
             <Route
@@ -94,8 +92,15 @@ const App: React.FC = () => {
               path="/liste-entreprises"
               element={<ListeEntreprise user={user} />}
             />  
+            <Route 
+              path="/mon-profil"
+            element={<MonProfil user={user} />} 
+            />
+
+           
           </Routes>
         )}
+
       </BrowserRouter>
     </>
   );
